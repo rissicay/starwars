@@ -1,10 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import configureStore from './configureStore';
+
+import StarWars from './components/StarWarsContainer';
+
 import './index.css';
 import 'font-awesome/css/font-awesome.min.css';
-import StarWars from './StarWars';
+
+const store = configureStore();
 
 ReactDOM.render(
-    <StarWars />, 
+    <Provider store={store}>
+        <StarWars />
+    </Provider>,
     document.getElementById('root')
 );

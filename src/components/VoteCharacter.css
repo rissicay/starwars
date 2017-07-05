@@ -1,0 +1,17 @@
+.vote-container {
+    right: 5px;
+    top: 8px;
+    position: absolute;
+}
+
+.vote-container i:hover {
+    color: #f11d55;
+}
+
+.vote-up {
+    margin-bottom: 5px;
+}
+
+.vote-down {
+    display: block !important;
+}

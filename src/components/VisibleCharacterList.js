@@ -1,22 +1,51 @@
-// @flow
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import React from 'react';
+import VoteCharacter from './VoteCharacter';
+import { charactersFetchData } from '../actions/characters';
 
 import './VisibleCharacterList.css';
 
-const VisibleCharacterList = () => {
-    return (
-        <ul className='characters'>
-            <li className='character'>
-		<span className="badge">0</span>	
-		<span>Luke Skywalker</span>
-                <span className="vote-container">
-                    <i className="vote-up fa fa-arrow-up" aria-hidden="true"></i>
-                    <i className="vote-down fa fa-arrow-down" aria-hidden="true"></i>
-                </span>
-            </li>
-        </ul>
-    );
+const mapStateToProps = (state) => {
+    return {
+        characters: state.characters,
+        hasErrored: state.charactersHasErrored,
+        isLoading: state.charactersIsLoading
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchData: (url) => dispatch(charactersFetchData(url))
+    }
 };
 
-export default VisibleCharacterList;
+class VisibleCharacterList extends Component {
+    componentDidMount() {
+        this.props.fetchData('http://swapi.co/api/people/');
+    }
+
+    render() {
+        if (this.props.hasErrored) {
+            return <p>Sorry! There was an error loading.</p>
+        }
+
+        if (this.props.isLoading) {
+            return <p>Loading...</p>
+        }
+
+        return (
+            <ul className='characters'>
+                {this.props.characters.map((character) => (
+                    <li key={character.name} className='character'>
+                        <span className="badge">0</span>	
+                        <span>{character.name}</span>
+                        <VoteCharacter />
+                    </li>
+                ))}
+            </ul>
+        );
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VisibleCharacterList);

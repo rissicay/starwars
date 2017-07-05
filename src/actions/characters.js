@@ -19,8 +19,24 @@ export function charactersFetchDataSuccess(characters) {
     }
 }
 
-export function errorAfterFiveSeconds() {
+export function charactersFetchData(url) {
     return (dispatch) => {
+        dispatch(charactersIsLoading(true));
 
-    }
+        fetch(url)
+            .then((response) => {
+                if(!response.ok) {
+                    throw Error(response.statusText);
+                }
+
+                dispatch(charactersIsLoading(false));
+
+                return response;
+            })
+            .then((response) => response.json())
+            .then((json) => {
+                dispatch(charactersFetchDataSuccess(json.results))
+            })
+            .catch(() => dispatch(charactersHasErrored(true)))
+    };
 }
