@@ -1,19 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import './VoteCharacter.css';
 
 import { upVoteCharacter, downVoteCharacter } from '../actions/character';
 
-const mapStateToProps = () => ({
-
-})
-
 const mapDispatchToProps = (
     dispatch,
     ownProps
 ) => ({
-    onUpVote() {
+    onUpVote(e) {
         dispatch(upVoteCharacter(ownProps.id))
     },
     onDownVote() {
@@ -21,14 +17,29 @@ const mapDispatchToProps = (
     }
 });
 
-const VoteCharacter = ({
-    onUpVote,
-    onDownVote
-}) => (
-    <span className="vote-container">
-        <i className="vote-up fa fa-arrow-up" onClick={onUpVote} aria-hidden="true"></i>
-        <i className="vote-down fa fa-arrow-down" onClick={onDownVote} aria-hidden="true"></i>
-    </span>
-);
+class VoteCharacter extends Component {
+    render() {
+        return (
+            <span className="vote-container">
+                <i 
+                    className="vote-up fa fa-arrow-up" 
+                    onClick={(e) => {
+                        e.stopPropagation(); 
+                        this.props.onUpVote();
+                    }}
+                    aria-hidden="true">
+                </i>
+                <i 
+                    className="vote-down fa fa-arrow-down" 
+                    onClick={(e) => {
+                        e.stopPropagation(); 
+                        this.props.onDownVote();
+                    }}
+                    aria-hidden="true"
+                ></i>
+            </span>
+        );
+    }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(VoteCharacter);
+export default connect(null, mapDispatchToProps)(VoteCharacter);

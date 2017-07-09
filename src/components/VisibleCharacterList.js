@@ -6,14 +6,12 @@ import { charactersFetchData } from '../actions/characters';
 
 import './VisibleCharacterList.css';
 
-const mapStateToProps = (state) => {
-    return {
-        characters: state.characters,
-        hasErrored: state.charactersHasErrored,
-        isLoading: state.charactersIsLoading,
-        filter: state.filterCharacters
-    }
-}
+const mapStateToProps = (state) => ({
+    characters: state.characters,
+    hasErrored: state.charactersHasErrored,
+    isLoading: state.charactersIsLoading,
+    filter: state.filterCharacters
+});
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -41,7 +39,6 @@ class VisibleCharacterList extends Component {
     }
 
     render() {
-        console.log(this.props);
         if (this.props.hasErrored) {
             return <p>Sorry! There was an error loading.</p>
         }
@@ -55,7 +52,7 @@ class VisibleCharacterList extends Component {
                 {visibleCharacters(this.props.characters, this.props.filter).map((character) => (
                     <Character 
                         key={character.id} 
-                        {...character}
+                        character={character}
                     />
                 ))}
             </ul>

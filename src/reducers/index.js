@@ -6,11 +6,14 @@ import {
     filterCharacters
 } from './characters';
 
+import { character } from './character';
+
 const rootReducer = combineReducers({
     characters,
     charactersHasErrored,
     charactersIsLoading,
-    filterCharacters
+    filterCharacters,
+    character
 });
 
 export default rootReducer;

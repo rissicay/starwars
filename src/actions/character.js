@@ -1,7 +1,7 @@
-export function displayCharacter(id) {
+export function displayCharacter(character) {
     return {
         type: 'SET_VIEW_CHARACTER',
-        id
+        character
     }
 }
 

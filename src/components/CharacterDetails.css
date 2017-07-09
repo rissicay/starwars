@@ -1,0 +1,12 @@
+.character-details dt {
+    display: inline-block;
+    width: 7em;
+    margin: .5em 0;
+    color: #607D8B;
+    font-weight: bold;
+}
+
+.character-details dd {
+    margin-left: 0;
+    display: inline-block;
+}

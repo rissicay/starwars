@@ -13,7 +13,6 @@ const SearchCharacters = ({ dispatch }) => {
             placeholder="Search..." 
             debounceTimeout={300}
             onChange={(event) => {
-                console.log(event.target.value);
                 dispatch(filterCharacters(event.target.value))
             }}
         />
