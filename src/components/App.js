@@ -3,12 +3,12 @@ import React from 'react';
 import VisibleCharacterList from './VisibleCharacterList';
 import SearchCharacters from './SearchCharacters';
 
-import './StarWarsContainer.css';
+import './App.css';
 
-const StarWarsContainer = () => (
+const App = () => (
     <div>
         <SearchCharacters />
         <VisibleCharacterList />
     </div>
 )
-export default StarWarsContainer;
+export default App;

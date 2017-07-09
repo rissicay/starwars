@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import VoteCharacter from './VoteCharacter';
+import Character from './Character';
 import { charactersFetchData } from '../actions/characters';
 
 import './VisibleCharacterList.css';
@@ -20,6 +20,18 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
+const visibleCharacters = (characters) => {
+    return characters.sort((a, b) => {
+        if (a.votes > b.votes) {
+            return -1;
+        } else if (a.votes < b.votes) {
+            return 1;
+        }
+
+        return 0;
+    });
+};
+
 class VisibleCharacterList extends Component {
     componentDidMount() {
         this.props.fetchData('http://swapi.co/api/people/');
@@ -36,15 +48,15 @@ class VisibleCharacterList extends Component {
 
         return (
             <ul className='characters'>
-                {this.props.characters.map((character) => (
-                    <li key={character.name} className='character'>
-                        <span className="badge">0</span>	
-                        <span>{character.name}</span>
-                        <VoteCharacter />
-                    </li>
+                {visibleCharacters(this.props.characters).map((character) => (
+                    <Character 
+                        key={character.id} 
+                        {...character}
+                    />
                 ))}
             </ul>
         );
+
     }
 }
 

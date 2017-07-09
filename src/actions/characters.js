@@ -29,14 +29,27 @@ export function charactersFetchData(url) {
                     throw Error(response.statusText);
                 }
 
-                dispatch(charactersIsLoading(false));
-
                 return response;
             })
             .then((response) => response.json())
             .then((json) => {
-                dispatch(charactersFetchDataSuccess(json.results))
+                let characters = json.results.map((character, idx) => {
+                    character.id = idx;
+                    character.votes = 0;
+
+                    return character;
+                })
+
+                dispatch(charactersFetchDataSuccess(characters))
+                dispatch(charactersIsLoading(false));
             })
             .catch(() => dispatch(charactersHasErrored(true)))
     };
+}
+
+export function filterCharacters(term) {
+    return {
+        type: 'SET_CHARACTER_FILTER',
+        term
+    }
 }
