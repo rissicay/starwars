@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
     return {
         characters: state.characters,
         hasErrored: state.charactersHasErrored,
-        isLoading: state.charactersIsLoading
+        isLoading: state.charactersIsLoading,
+        filter: state.filterCharacters
     }
 }
 
@@ -20,16 +21,18 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-const visibleCharacters = (characters) => {
-    return characters.sort((a, b) => {
-        if (a.votes > b.votes) {
-            return -1;
-        } else if (a.votes < b.votes) {
-            return 1;
-        }
+const visibleCharacters = (characters, filter) => {
+    return characters
+        .filter((character) => character.name.toLowerCase().includes(filter.toLowerCase()))
+        .sort((a, b) => {
+            if (a.votes > b.votes) {
+                return -1;
+            } else if (a.votes < b.votes) {
+                return 1;
+            }
 
-        return 0;
-    });
+            return 0;
+        });
 };
 
 class VisibleCharacterList extends Component {
@@ -38,6 +41,7 @@ class VisibleCharacterList extends Component {
     }
 
     render() {
+        console.log(this.props);
         if (this.props.hasErrored) {
             return <p>Sorry! There was an error loading.</p>
         }
@@ -48,7 +52,7 @@ class VisibleCharacterList extends Component {
 
         return (
             <ul className='characters'>
-                {visibleCharacters(this.props.characters).map((character) => (
+                {visibleCharacters(this.props.characters, this.props.filter).map((character) => (
                     <Character 
                         key={character.id} 
                         {...character}

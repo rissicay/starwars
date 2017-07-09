@@ -1,10 +1,16 @@
 import { combineReducers } from 'redux';
-import { characters, charactersHasErrored, charactersIsLoading } from './characters';
+import { 
+    characters, 
+    charactersHasErrored, 
+    charactersIsLoading,
+    filterCharacters
+} from './characters';
 
 const rootReducer = combineReducers({
     characters,
     charactersHasErrored,
-    charactersIsLoading
+    charactersIsLoading,
+    filterCharacters
 });
 
 export default rootReducer;

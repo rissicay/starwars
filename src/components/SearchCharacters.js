@@ -1,14 +1,23 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import DebounceInput from 'react-debounce-input';
+
+import { filterCharacters } from '../actions/characters';
 
 import './SearchCharacters.css';
 
-const SearchCharacters = () => {
-    let input;
+const SearchCharacters = ({ dispatch }) => {
     return (
-        <input className="search-box" ref={node => {
-            input = node;
-        }} />
+        <DebounceInput 
+            className="search-box" 
+            placeholder="Search..." 
+            debounceTimeout={300}
+            onChange={(event) => {
+                console.log(event.target.value);
+                dispatch(filterCharacters(event.target.value))
+            }}
+        />
     );
 };
 
-export default SearchCharacters;
+export default connect()(SearchCharacters);

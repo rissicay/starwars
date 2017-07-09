@@ -43,7 +43,7 @@ export function charactersFetchData(url) {
                 dispatch(charactersFetchDataSuccess(characters))
                 dispatch(charactersIsLoading(false));
             })
-            .catch(() => dispatch(charactersHasErrored(true)))
+            //.catch(() => dispatch(charactersHasErrored(true)))
     };
 }
 

@@ -58,3 +58,12 @@ export function characters(state = [], action) {
             return state;
     }
 }
+
+export function filterCharacters(state = '', action) {
+    switch (action.type) {
+        case 'SET_CHARACTER_FILTER':
+            return action.term;
+        default:
+            return state;
+    }
+}
