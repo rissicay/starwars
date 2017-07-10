@@ -46,6 +46,21 @@ const voteForCharacter = (state, action) => {
     }
 }
 
+const addCommentForCharacter = (state, action) => {
+    switch (action.type) {
+        case 'ADD_COMMENT_CHARACTER':
+            return findCharacter(state, action.id, (character) => {
+                return {
+                    ...character,
+                    comment: action.comment
+                }
+            });
+        default:
+            return state;
+    }
+
+};
+
 export function characters(state = [], action) {
     switch (action.type) {
         case 'CHARACTERS_FETCH_DATA_SUCCESS':
@@ -54,6 +69,8 @@ export function characters(state = [], action) {
             return voteForCharacter(state, action);
         case 'DOWN_VOTE_CHARACTER':
             return voteForCharacter(state, action);
+        case 'ADD_COMMENT_CHARACTER':
+            return addCommentForCharacter(state, action);
         default:
             return state;
     }

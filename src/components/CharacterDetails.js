@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import CommentBox from './CommentBox';
+
 import './CharacterDetails.css';
 
 const mapStateToProps = (state) => ({
@@ -43,6 +45,8 @@ class CharacterDetails extends Component {
                     <dd>{this.props.character.gender}</dd>
                     </div>
                 </dl>
+                <hr />
+                <CommentBox />
             </div>
         );
     }

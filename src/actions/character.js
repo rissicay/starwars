@@ -18,3 +18,11 @@ export function downVoteCharacter(id) {
         id
     }
 }
+
+export function addCommentCharacter(id, comment) {
+    return {
+        type: 'ADD_COMMENT_CHARACTER',
+        id,
+        comment
+    }
+}

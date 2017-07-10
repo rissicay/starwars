@@ -36,6 +36,7 @@ export function charactersFetchData(url) {
                 let characters = json.results.map((character, idx) => {
                     character.id = idx;
                     character.votes = 0;
+                    character.comment = '';
 
                     return character;
                 })
