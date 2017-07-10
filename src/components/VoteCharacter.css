@@ -1,17 +1,17 @@
-.vote-container {
+.vote-character {
     right: 5px;
     top: 8px;
     position: absolute;
 }
 
-.vote-container i:hover {
+.vote-character i:hover {
     color: #f11d55;
 }
 
-.vote-up {
+.vote-character .vote-up {
     margin-bottom: 5px;
 }
 
-.vote-down {
+.vote-character .vote-down {
     display: block !important;
 }

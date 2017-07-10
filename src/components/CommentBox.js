@@ -24,7 +24,7 @@ const CommentBox = ({
     character,
     onChange
 }) => (
-    <div>
+    <div className="comment-box">
         <dl>
             <dt>Comment:</dt>
             <dd>

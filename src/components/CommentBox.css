@@ -1,0 +1,12 @@
+.comment-box dt {
+    display: inline-block;
+    width: 7em;
+    margin: .5em 0;
+    color: #607D8B;
+    font-weight: bold;
+}
+
+.comment-box dd {
+    margin-left: 0;
+    display: inline-block;
+}

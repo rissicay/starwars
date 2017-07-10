@@ -20,7 +20,7 @@ const mapDispatchToProps = (
 class VoteCharacter extends Component {
     render() {
         return (
-            <span className="vote-container">
+            <span className="vote-character">
                 <i 
                     className="vote-up fa fa-arrow-up" 
                     onClick={(e) => {
