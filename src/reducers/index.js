@@ -7,13 +7,15 @@ import {
 } from './characters';
 
 import { character } from './character';
+import { planets } from './planets';
 
 const rootReducer = combineReducers({
     characters,
     charactersHasErrored,
     charactersIsLoading,
     filterCharacters,
-    character
+    character,
+    planets
 });
 
 export default rootReducer;

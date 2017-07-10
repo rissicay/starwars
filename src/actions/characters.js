@@ -1,3 +1,5 @@
+import { planetFetchData } from './planets';
+
 export function charactersHasErrored(bool) {
     return {
         type: 'CHARACTERS_HAS_ERRORED',
@@ -38,13 +40,19 @@ export function charactersFetchData(url) {
                     character.votes = 0;
                     character.comment = '';
 
+                    const planetArr = character.homeworld.split('/');
+                    const id = planetArr[planetArr.length - 2];
+                    character.planet_id  = id;
+
+                    dispatch(planetFetchData(id, character.homeworld));
+
                     return character;
                 })
 
                 dispatch(charactersFetchDataSuccess(characters))
                 dispatch(charactersIsLoading(false));
             })
-            //.catch(() => dispatch(charactersHasErrored(true)))
+            .catch(() => dispatch(charactersHasErrored(true)))
     };
 }
 

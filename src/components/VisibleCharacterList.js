@@ -48,7 +48,7 @@ class VisibleCharacterList extends Component {
         }
 
         return (
-            <ul className='characters'>
+            <ul className='visible-character-list'>
                 {visibleCharacters(this.props.characters, this.props.filter).map((character) => (
                     <Character 
                         key={character.id} 

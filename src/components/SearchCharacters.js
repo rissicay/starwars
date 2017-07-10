@@ -9,7 +9,7 @@ import './SearchCharacters.css';
 const SearchCharacters = ({ dispatch }) => {
     return (
         <DebounceInput 
-            className="search-box" 
+            className="search-characters" 
             placeholder="Search..." 
             debounceTimeout={300}
             onChange={(event) => {

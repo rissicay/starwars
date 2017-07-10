@@ -6,6 +6,10 @@ import { displayCharacter } from '../actions/character';
 
 import './Character.css';
 
+const mapStateToProps = (state) => ({
+    planets: state.planets
+});
+
 const mapDispatchToProps = (
     dispatch,
     ownProps
@@ -16,15 +20,26 @@ const mapDispatchToProps = (
 });
 
 class Character extends Component {
+
+    displayPlanet() {
+
+        const planetId = this.props.character.planet_id
+        const planet = this.props.planets[planetId];
+
+        if (planet && !planet.isLoading) {
+            return <span>- {planet.name}</span> 
+        }
+    }
+
     render() {
         return (
             <li onClick={this.props.onClick} className='character'> 
-                <span className="badge">{this.props.character.votes}</span>	
-                <span>{this.props.character.name}</span>
+                <span className="badge">{this.props.character.votes}</span>
+                <span>{this.props.character.name} { this.displayPlanet() }</span>
                 <VoteCharacter id={this.props.character.id} />
             </li>
         );
     }
 }
 
-export default connect(null, mapDispatchToProps)(Character);
+export default connect(mapStateToProps, mapDispatchToProps)(Character);
